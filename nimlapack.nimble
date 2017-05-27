@@ -4,7 +4,7 @@ version       = "0.1.0"
 author        = "Andrea Ferretti"
 description   = "Nim binding for LAPACK"
 license       = "Apache2"
-skipFiles     = @["lapack.h", "lapack.c2nim", "lapack.html"]
+skipFiles     = @["lapack.h", "lapack.c2nim", "nimlapack.html"]
 
 requires "nim >= 0.16.0", "nimblas >= 0.1.4"
 
