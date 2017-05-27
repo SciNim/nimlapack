@@ -1,0 +1,30 @@
+#ifdef C2NIM
+  #prefix clapack_
+
+  #skipifndef ATL_INT
+  #skipifndef ATL_CINT
+  #skipifndef ATLAS_ORDER
+  #skipifndef ATLAS_DIAG
+  #skipifndef ATLAS_UPLO
+
+  #def ATL_INT int
+  #def ATL_CINT const int
+  #def ATLAS_ORDER CBLAS_ORDER
+  #def ATLAS_DIAG CBLAS_DIAG
+  #def ATLAS_UPLO CBLAS_UPLO
+
+  #dynlib libName
+  #private libName
+  #cdecl
+  #if defined(windows)
+  #  define libName "lapack.dll"
+  #elif defined(macosx)
+  #  define libName "liblapack.dylib"
+  #else
+  #  define libName "liblapack.so.(|3|2|1|0)"
+  #endif
+
+  #include "nimblas/cblas.h"
+  #skipinclude
+#endif
+
