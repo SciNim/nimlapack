@@ -8,9 +8,6 @@ elif defined(macosx):
 else:
   const
     libName = "liblapack.so.(|3|2|1|0)"
-import
-  nimblas/cblas
-
 type
   lapack_complex_float = object
     re, im: cfloat
