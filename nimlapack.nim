@@ -1,13 +1,23 @@
  {.deadCodeElim: on.}
 when defined(windows):
   const
-    libName = "lapack.dll"
+    libSuffix = ".dll"
+    libPrefix = ""
 elif defined(macosx):
   const
-    libName = "liblapack.dylib"
+    libSuffix = ".dylib"
+    libPrefix = "lib"
 else:
   const
-    libName = "liblapack.so.(|3|2|1|0)"
+    libSuffix = ".so(||.3|.2|.1|.0)"
+    libPrefix = "lib"
+
+const
+  lapack {.strdefine.} = "lapack"
+  libName = libPrefix & lapack & libSuffix
+
+{.hint: "Using LAPACK library with name: " & libName .}
+
 type
   lapack_complex_float = object
     re, im: cfloat

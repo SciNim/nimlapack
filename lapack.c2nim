@@ -10,24 +10,36 @@
   #assumedef LAPACKE_malloc
   #assumedef LAPACKE_free
 
+  #dynlib libName
+  #private libName
+  #cdecl
+
   #def lapack_int int
   #def lapack_logical int
   #def LAPACK_GLOBAL(a, b) a##_
 
-  #dynlib libName
-  #private libName
-  #cdecl
-  #if defined(windows)
-  #  define libName "lapack.dll"
-  #elif defined(macosx)
-  #  define libName "liblapack.dylib"
-  #else
-  #  define libName "liblapack.so.(|3|2|1|0)"
-  #endif
-
   #skipinclude
 
 #@
+when defined(windows):
+  const
+    libSuffix = ".dll"
+    libPrefix = ""
+elif defined(macosx):
+  const
+    libSuffix = ".dylib"
+    libPrefix = "lib"
+else:
+  const
+    libSuffix = ".so(||.3|.2|.1|.0)"
+    libPrefix = "lib"
+
+const
+  lapack {.strdefine.} = "lapack"
+  libName = libPrefix & lapack & libSuffix
+
+{.hint: "Using LAPACK library with name: " & libName .}
+
 type
   lapack_complex_float = object
     re, im: cfloat

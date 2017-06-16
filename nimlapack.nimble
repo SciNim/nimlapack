@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "0.1.1"
 author        = "Andrea Ferretti"
 description   = "Nim binding for LAPACK"
 license       = "Apache2"
@@ -39,4 +39,9 @@ proc configForTests() =
 
 task test, "run NimLAPACK tests":
   configForTests()
+  setCommand "c", "tests/test.nim"
+
+task testopenblas, "run NimLAPACK tests on OpenBLAS":
+  configForTests()
+  --define:"lapack=openblas"
   setCommand "c", "tests/test.nim"
