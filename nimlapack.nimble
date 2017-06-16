@@ -5,6 +5,7 @@ author        = "Andrea Ferretti"
 description   = "Nim binding for LAPACK"
 license       = "Apache2"
 skipFiles     = @["lapacke.h", "lapack.h", "lapack.c2nim", "nimlapack.html"]
+skipDirs      = @["tests"]
 
 requires "nim >= 0.16.0"
 
@@ -26,3 +27,16 @@ task check, "check that generated bindings do compile":
 
 task docs, "generate documentation":
   exec("nim doc2 nimlapack.nim")
+
+proc configForTests() =
+  --hints: off
+  --linedir: on
+  --stacktrace: on
+  --linetrace: on
+  --debuginfo
+  --path: "."
+  --run
+
+task test, "run NimLAPACK tests":
+  configForTests()
+  setCommand "c", "tests/test.nim"
