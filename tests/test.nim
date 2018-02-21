@@ -12,9 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest, nimlapack
+import unittest, nimlapack, math
 
 template first[A](x: openArray[A]): ptr A = addr(x[0])
+
+proc `=~`(x, y: openarray[float]): bool =
+  if len(x) != len(y):
+    return false
+  var
+    d = 0'f
+    xx = 0'f
+    yy = 0'f
+  let epsilon = 1e-5
+  for i in 0 .. high(x):
+    d += abs(x[i] - y[i])
+    xx += x[i] * x[i]
+    yy += y[i] * y[i]
+  return d / (xx.sqrt + yy.sqrt) < epsilon
 
 suite "NimLAPACK test":
   test "solver":
@@ -34,4 +48,4 @@ suite "NimLAPACK test":
 
     dgesv(addr m, addr n, a.first, addr lda, ipiv.first, v.first, addr lda, addr info)
     check info == 0
-    check v == [2.0, 1.0, 2.0, 1.0]
+    check v =~ [2.0, 1.0, 2.0, 1.0]
