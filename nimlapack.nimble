@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.1"
+version       = "0.2.0"
 author        = "Andrea Ferretti"
 description   = "Nim binding for LAPACK"
 license       = "Apache2"
@@ -9,7 +9,7 @@ skipDirs      = @["tests"]
 
 requires "nim >= 0.16.0"
 
-import ospaths, strutils
+import strutils
 
 task header, "generate bindings from header":
   let
