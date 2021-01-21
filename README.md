@@ -6,7 +6,7 @@ These are low-level bindings generated via c2nim. See `nimlapack.html` for
 the API documentation.
 
 For a higher-level linear algebra library based on this, check out
-[neo](http://unicredit.github.io/neo/).
+[neo](http://andreaferretti.github.io/neo/).
 
 ## Linking LAPACK implementations
 
@@ -25,7 +25,7 @@ You can link against a different LAPACK implementation by a combination of:
   say, the library `libopenblas.so.3` on Linux, you should pass to Nim the
   option `--define:lapack=openblas`.
 
-See the tasks inside [nimblas.nimble](https://github.com/unicredit/nimlapack/blob/master/nimlapack.nimble)
+See the tasks inside [nimblas.nimble](https://github.com/andreaferretti/nimlapack/blob/master/nimlapack.nimble)
 for a few examples.
 
 Packages for various LAPACK implementations are available from the package
