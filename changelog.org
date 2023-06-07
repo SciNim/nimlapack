@@ -1,0 +1,2 @@
+* v0.2.2
+- export the complex type definitions ~complex_lapack_float|double~ 
