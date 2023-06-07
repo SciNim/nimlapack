@@ -19,9 +19,9 @@ const
 
 type
   lapack_complex_float* = object
-    re, im: cfloat
+    re*, im*: cfloat
   lapack_complex_double* = object
-    re, im: cdouble
+    re*, im*: cdouble
 ##  LAPACK 3.3.0
 
 ##  LAPACK 3.4.0
