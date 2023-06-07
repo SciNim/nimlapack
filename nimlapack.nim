@@ -18,9 +18,9 @@ const
 {.hint: "Using LAPACK library with name: " & libName .}
 
 type
-  lapack_complex_float = object
+  lapack_complex_float* = object
     re, im: cfloat
-  lapack_complex_double = object
+  lapack_complex_double* = object
     re, im: cdouble
 ##  LAPACK 3.3.0
 
@@ -31,10 +31,10 @@ type
 ## ****************************************************************************
 ##   Copyright (c) 2010, Intel Corp.
 ##   All rights reserved.
-## 
+##
 ##   Redistribution and use in source and binary forms, with or without
 ##   modification, are permitted provided that the following conditions are met:
-## 
+##
 ##  Redistributions of source code must retain the above copyright notice,
 ##       this list of conditions and the following disclaimer.
 ##  Redistributions in binary form must reproduce the above copyright
@@ -43,7 +43,7 @@ type
 ##  Neither the name of Intel Corporation nor the names of its contributors
 ##       may be used to endorse or promote products derived from this software
 ##       without specific prior written permission.
-## 
+##
 ##   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 ##   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 ##   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -60,24 +60,24 @@ type
 ##  Author: Intel Corporation
 ##  Generated November, 2011
 ## ***************************************************************************
-## 
+##
 ##   Turn on HAVE_LAPACK_CONFIG_H to redefine C-LAPACK datatypes
-## 
+##
 
 ##  Complex types are structures equivalent to the
 ##  Fortran complex types COMPLEX(4) and COMPLEX(8).
-## 
+##
 ##  One can also redefine the types with his own types
 ##  for example by including in the code definitions like
-## 
+##
 ##  #define lapack_complex_float std::complex<float>
 ##  #define lapack_complex_double std::complex<double>
-## 
+##
 ##  or define these types in the command line:
-## 
+##
 ##  -Dlapack_complex_float="std::complex<float>"
 ##  -Dlapack_complex_double="std::complex<double>"
-## 
+##
 
 template C2INT*(x: untyped): untyped =
   (int)((cast[ptr cfloat](addr(x)))[])
