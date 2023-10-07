@@ -1,18 +1,20 @@
 when defined(windows):
   const
     libSuffix = ".dll"
-    libPrefix = ""
+    libPrefix = "(|lib)"
+    lapack {.strdefine.} = "(lapack|openblas|mkl_intel_lp64)"
 elif defined(macosx):
   const
     libSuffix = ".dylib"
     libPrefix = "lib"
+    lapack {.strdefine.} = "lapack"
 else:
   const
     libSuffix = ".so(||.3|.2|.1|.0)"
     libPrefix = "lib"
+    lapack {.strdefine.} = "lapack"
 
 const
-  lapack {.strdefine.} = "lapack"
   libName = libPrefix & lapack & libSuffix
 
 {.hint: "Using LAPACK library with name: " & libName .}
