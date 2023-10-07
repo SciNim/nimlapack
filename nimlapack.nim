@@ -7,7 +7,7 @@ elif defined(macosx):
   const
     libSuffix = ".dylib"
     libPrefix = "lib"
-    lapack {.strdefine.} = "lapack"
+    lapack {.strdefine.} = "(lapack|openblas)"
 else:
   const
     libSuffix = ".so(||.3|.2|.1|.0)"
