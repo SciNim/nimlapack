@@ -1,2 +1,4 @@
+* v0.3.0
+- smarter library detection (PR #5)
 * v0.2.2
 - export the complex type definitions ~complex_lapack_float|double~ 
